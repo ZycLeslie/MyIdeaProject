@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>显示学生信息</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script th:inline="javascript"></script>
+    <script src="../static/jquery-3.4.1.js"></script>
+
+</head>
+<body>
+
+<form action="#" th:action="@{/add}"  method="post">
+    姓名：<input name="username" type="text"/>
+    <br>
+    学号：<input type="text" name="no" />
+    <input type="submit" value="添加"/>
+</form>
+<br>
+
+<form action="#" th:action="@{/getUser }" method="post">
+    <input name="key" type="text"/>
+    <input type="submit" value="查询"/>
+</form>
+
+<br>
+<table id="table1" border="1" bgcolor="#ff7d0f">
+    <tr>
+        <th id="id">序号</th>
+        <th id="name">姓名</th>
+        <th id="no">学号</th>
+        <th id="test">test</th>
+    </tr>
+
+    <tr th:each="students:${formLists}" >
+        <td th:text="${students.id}" align="center" colspan="1"></td>
+        <td th:text="${students.name}" align="center"></td>
+        <td th:text="${students.no}" align="center"></td>
+        <td>
+            <a th:href="@{'/delete/'+${students.id}}">删除</a>
+            <a th:href="@{'/modify/'+${students.id}}">修改</a>
+        </td>
+    </tr>
+</table>
+</body>
+
+
+</html>
